@@ -23,6 +23,7 @@ interface FormFieldOwnProps extends
   AdaptivityProps,
   FormFieldProps {
   Component?: ElementType;
+  disabled?: boolean;
 }
 
 const FormField: React.FunctionComponent<FormFieldOwnProps> = withAdaptivity(({
@@ -31,6 +32,7 @@ const FormField: React.FunctionComponent<FormFieldOwnProps> = withAdaptivity(({
   getRootRef,
   before,
   after,
+  disabled,
   sizeY,
   ...restProps
 }: FormFieldOwnProps) => {
@@ -53,7 +55,13 @@ const FormField: React.FunctionComponent<FormFieldOwnProps> = withAdaptivity(({
       ref={getRootRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      vkuiClass={classNames(getClassName('FormField', platform), `FormField--sizeY-${sizeY}`)}
+      vkuiClass={classNames(
+        getClassName('FormField', platform),
+        `FormField--sizeY-${sizeY}`,
+        {
+          'FormField--disabled': disabled,
+        },
+      )}
     >
       {hasReactNode(before) && (
         <div vkuiClass="FormField__before">
@@ -67,7 +75,7 @@ const FormField: React.FunctionComponent<FormFieldOwnProps> = withAdaptivity(({
         </div>
       )}
       <div vkuiClass={classNames('FormField__border', {
-        'FormField__border--hover': hover,
+        'FormField__border--hover': !disabled && hover,
       })} />
     </Component>
   );

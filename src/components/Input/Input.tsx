@@ -34,6 +34,7 @@ const Input: FunctionComponent<InputProps> = ({
       getRootRef={getRootRef}
       before={before}
       after={after}
+      disabled={restProps.disabled}
     >
       <input {...restProps} vkuiClass="Input__el" ref={getRef} />
     </FormField>

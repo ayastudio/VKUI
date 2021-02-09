@@ -96,6 +96,7 @@ const ChipsInput = <Option extends ChipsInputOption>(props: ChipsInputProps<Opti
       })}
       className={className}
       style={style}
+      disabled={disabled}
     >
       <div vkuiClass="ChipsInput__container">
         {selectedOptions.map((option: Option) => {
@@ -116,7 +117,7 @@ const ChipsInput = <Option extends ChipsInputOption>(props: ChipsInputProps<Opti
             autoCorrect="off"
             spellCheck={false}
             aria-autocomplete="list"
-            tabIndex={disabled ? null : tabIndex}
+            tabIndex={disabled ? -1 : tabIndex}
             vkuiClass="ChipsInput__el"
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
