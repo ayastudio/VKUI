@@ -86,20 +86,23 @@ class NativeSelect extends React.Component<NativeSelectProps, SelectState> {
 
   render() {
     const { style, value, defaultValue, onChange, align, placeholder, children, className,
-      getRef, getRootRef, disabled, sizeX, sizeY, platform, after, ...restProps } = this.props;
+      getRef, getRootRef, disabled, sizeX, sizeY, platform, before, after, ...restProps } = this.props;
 
     const TypographyComponent = platform === VKCOM || sizeY === SizeType.COMPACT ? Text : Headline;
 
     return (
       <FormField
         Component="label"
-        vkuiClass={classNames(getClassName('Select', platform), {
-          ['Select--not-selected']: this.state.notSelected,
-          [`Select--align-${align}`]: !!align,
-          [`Select--sizeX--${sizeX}`]: !!sizeX,
-          [`Select--sizeY--${sizeY}`]: !!sizeY,
-          'Select--disabled': disabled,
-        })}
+        vkuiClass={classNames(
+          getClassName('Select', platform),
+          {
+            'Select--not-selected': this.state.notSelected,
+            [`Select--align-${align}`]: !!align,
+            'Select--disabled': disabled,
+          },
+          `Select--sizeX--${sizeX}`,
+          `Select--sizeY--${sizeY}`,
+        )}
         className={className}
         style={style}
         getRootRef={getRootRef}
