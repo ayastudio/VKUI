@@ -1,7 +1,7 @@
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { classNames } from '../../lib/classNames';
 import { Icon24Dropdown, Icon20Dropdown } from '@vkontakte/icons';
-import FormField, { FormFieldProps } from '../FormField/FormField';
+import FormField from '../FormField/FormField';
 import { HasAlign, HasRootRef } from '../../types';
 import { withAdaptivity, AdaptivityProps, SizeType } from '../../hoc/withAdaptivity';
 import { usePlatform } from '../../hooks/usePlatform';
@@ -14,10 +14,13 @@ export interface SelectMimicryProps extends
   HTMLAttributes<HTMLElement>,
   HasAlign,
   HasRootRef<HTMLElement>,
-  AdaptivityProps,
-  FormFieldProps {
+  AdaptivityProps {
   multiline?: boolean;
   disabled?: boolean;
+  /**
+   * Иконка 12|16|20|24|28 или `IconButton`.
+   */
+  before?: ReactNode;
 }
 
 const SelectMimicry: FunctionComponent<SelectMimicryProps> = ({
@@ -31,7 +34,6 @@ const SelectMimicry: FunctionComponent<SelectMimicryProps> = ({
   onClick,
   sizeX,
   sizeY,
-  after,
   ...restProps
 }: SelectMimicryProps) => {
   const platform = usePlatform();
